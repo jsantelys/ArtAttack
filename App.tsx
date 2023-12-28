@@ -37,8 +37,6 @@ CacheManager.config = {
   thumbnailAnimationDuration: 1000,
 };
 
-//TODO: Implement themes and colors, fonts and typography correctly with modularized files
-
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 

@@ -20,8 +20,6 @@ import Animated, { StretchInX, StretchOutX, } from 'react-native-reanimated';
 import ErrorModal from '../../ui/ErrorModal'
 import { AxiosError } from 'axios';
 
-//TODO: Check how can i pass a variable for screen
-
 type Props = CompositeScreenProps<
     NativeStackScreenProps<HomeStackParamList, 'Dashboard'>,
     BottomTabScreenProps<BottomTabParamList>
