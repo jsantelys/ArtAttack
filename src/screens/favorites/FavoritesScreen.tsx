@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArtPreview } from '../../types/ArtInterface';
@@ -6,7 +6,7 @@ import CardComponent from '../../components/card/CardComponent';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SCREEN_NAMES from '../../constants/ScreenNames';
 import { FavoritesStackParamList } from '../../navigation/FavoritesStack';
-import { CompositeScreenProps } from '@react-navigation/native';
+import { CompositeScreenProps, useScrollToTop } from '@react-navigation/native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { BottomTabParamList } from '../../navigation/BottomTabStack';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +24,9 @@ export default function FavoriteScreen({ navigation }: Props) {
     const insets = useSafeAreaInsets();
     const favorites = useSelector(selectFavorites)
     const dispatch = useDispatch()
+
+    const flalistRef = useRef(null)
+    useScrollToTop(flalistRef)
 
     const navigateToDetail = (id: number, image_id: string) => {
         navigation.navigate(SCREEN_NAMES.favoriteDetail, {
@@ -59,6 +62,7 @@ export default function FavoriteScreen({ navigation }: Props) {
             paddingRight: insets.right,
         }}>
             <Animated.FlatList
+                ref={flalistRef}
                 data={favorites}
                 renderItem={({ item }) => (
                     <CardComponent

@@ -29,7 +29,8 @@ export default function FavoriteDetailScreen({ navigation, route }: Props) {
     const [showError, setShowError] = useState(false)
     const [error, setError] = useState('')
 
-    const [imageUrl, setImageUrl] = useState(API_PATHS.getIFFImageHD(image_id))
+    const [imageUrl, setImageUrl] = useState(API_PATHS.getIIFImage(image_id))
+    const [errorLoading, setErrorLoading] = useState(false)
 
     const insets = useSafeAreaInsets()
     const favoriteDetailPresenter = new FavoriteDetailPresenter()
@@ -66,7 +67,14 @@ export default function FavoriteDetailScreen({ navigation, route }: Props) {
                         sharedTransitionTag={`detailImage${image_id}`}
                         style={styles.image}
                         onError={({ nativeEvent: { error } }) => {
-                            if (error.includes("403")) setImageUrl(API_PATHS.getIIFImage(image_id))
+                            if (error.includes("403") && !errorLoading) {
+                                setErrorLoading(true)
+                                setImageUrl(API_PATHS.getIIFImage(image_id))
+                            }
+                        }}
+                        onLoad={() => {
+                            if (!errorLoading)
+                                setImageUrl(API_PATHS.getIFFImageHD(image_id))
                         }}
                     />
                 </Pressable>
