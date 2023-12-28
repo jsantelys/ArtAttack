@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Libre Baskerville.ttf",
+      "sha1": "ed706d27473a09536d94fed8fee4809fda713759"
+    },
+    {
+      "path": "assets/fonts/LibreBaskerville-Italic.ttf",
+      "sha1": "1c4a7eed5b5ffeed2818cc75c16825596d64ab67"
+    }
+  ]
+}
